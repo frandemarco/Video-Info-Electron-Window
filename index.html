@@ -23,7 +23,12 @@
           ipcRenderer.send('video:submit', path);
         });
         ipcRenderer.on('video:metadata', (event,duration)=>{
-            document.querySelector('#result').innerHTML =`Video is ${duration} seconds`; 
+           let hours = parseInt(duration/3600);
+            duration = duration % 3600;
+            let minutes = parseInt(duration/60);
+            duration = duration % 60;
+            let seconds = Math.round(duration);
+            document.querySelector('#result').innerHTML =`Video is ${hours}:${minutes}:${seconds} H:M:S`; 
             console.log(`${duration}`);
         });
      </script>
